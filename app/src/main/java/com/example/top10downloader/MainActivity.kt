@@ -27,6 +27,7 @@ class FeedEntry {
 class MainActivity : AppCompatActivity() {
 
     private var downloadData: DownloadData? = null
+
     //by lazy { DownloadData(this, binding.xmlListView) }
     private lateinit var binding: ActivityMainBinding
     private val TAG = "MainActivity"
@@ -45,11 +46,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        Log.d(TAG,"onCreate: called")
+        Log.d(TAG, "onCreate: called")
 
-        if (savedInstanceState !=null){
-            feedUrl= savedInstanceState.getString(STATE_URL)!!
-            feedLimit=savedInstanceState.getInt(STATE_LIMIT)
+        if (savedInstanceState != null) {
+            feedUrl = savedInstanceState.getString(STATE_URL)!!
+            feedLimit = savedInstanceState.getInt(STATE_LIMIT)
         }
         //val downloadData = DownloadData(this,binding.xmlListView)
         downLoadUrl(feedUrl.format(feedLimit))
@@ -109,8 +110,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(STATE_URL,feedUrl)
-        outState.putInt(STATE_LIMIT,feedLimit)
+        outState.putString(STATE_URL, feedUrl)
+        outState.putInt(STATE_LIMIT, feedLimit)
     }
 
     override fun onDestroy() {
@@ -140,8 +141,6 @@ class MainActivity : AppCompatActivity() {
                 val parseApplications = ParseApplications()
                 parseApplications.parse(result)
 
-//                val arrayAdapter = ArrayAdapter<FeedEntry>(propertyContext ,R.layout.list_item,parseApplications.applications)
-//                propertyListView.adapter = arrayAdapter
 
                 val feedAdapter = FeedAdapter(
                     propertyContext,

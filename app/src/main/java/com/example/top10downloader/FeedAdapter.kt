@@ -25,16 +25,16 @@ class FeedAdapter(
     private val inflater = LayoutInflater.from(context)
 
     override fun getCount(): Int {
-        Log.d(TAG, "get count :called")
+        // Log.d(TAG, "get count :called")
         return applications.size
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        Log.d(TAG, "get view:called")
+        //  Log.d(TAG, "get view:called")
         val view: View
         val viewHolder: ViewHolder
         if (convertView == null) {
-            Log.d(TAG, "getView called with null convertView")
+            //  Log.d(TAG, "getView called with null convertView")
             view = inflater.inflate(resource, parent, false)
             viewHolder = ViewHolder(view)
             view.tag = viewHolder
@@ -44,9 +44,6 @@ class FeedAdapter(
             viewHolder = view.tag as ViewHolder
         }
 
-//        val tvName: TextView = view.findViewById(R.id.tvName)
-//        val tvArtist: TextView = view.findViewById(R.id.tvArtist)
-//        val tvSummary: TextView = view.findViewById(R.id.tvSummary)
 
         val currentapp = applications[position]
 
