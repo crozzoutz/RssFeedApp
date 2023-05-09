@@ -1,7 +1,6 @@
 package com.example.top10downloader
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,11 +17,16 @@ class ViewHolder(v: View) {
 class FeedAdapter(
     context: Context,
     private val resource: Int,
-    private val applications: List<FeedEntry>
+    private var applications: List<FeedEntry>
 ) : ArrayAdapter<FeedEntry>(context, resource) {
 
-    private val TAG = "FeedAdapter"
+   // private val TAG = "FeedAdapter"
     private val inflater = LayoutInflater.from(context)
+
+    fun setFeedList(feedList: List<FeedEntry>){
+        this.applications=feedList
+        notifyDataSetChanged()
+    }
 
     override fun getCount(): Int {
         // Log.d(TAG, "get count :called")
@@ -39,7 +43,6 @@ class FeedAdapter(
             viewHolder = ViewHolder(view)
             view.tag = viewHolder
         } else {
-            Log.d(TAG, "getView provides convertView")
             view = convertView
             viewHolder = view.tag as ViewHolder
         }

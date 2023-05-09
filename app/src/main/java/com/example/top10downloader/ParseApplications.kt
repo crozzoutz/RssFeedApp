@@ -4,8 +4,10 @@ import android.util.Log
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 
+private const val TAG = "ParseApplication"
+
 class ParseApplications {
-    private val TAG = "ParseApplication"
+
     val applications = ArrayList<FeedEntry>()
 
     fun parse(xmlData: String): Boolean {
@@ -25,7 +27,7 @@ class ParseApplications {
                 val tagName = xpp.name?.toLowerCase()  //TODO: we should use the safe call operator
                 when (eventType) {
                     XmlPullParser.START_TAG -> {
-                      //  Log.d(TAG, "parse: starting tag for $tagName")
+                        //  Log.d(TAG, "parse: starting tag for $tagName")
                         if (tagName == "entry") {
                             inEntry = true
                         }
@@ -33,7 +35,7 @@ class ParseApplications {
                     XmlPullParser.TEXT -> textvalue = xpp.text
 
                     XmlPullParser.END_TAG -> {
-                       // Log.d(TAG, "parse : Ending tag for $tagName")
+                        // Log.d(TAG, "parse : Ending tag for $tagName")
                         if (inEntry) {
                             when (tagName) {
                                 "entry" -> {
@@ -54,10 +56,6 @@ class ParseApplications {
                 eventType = xpp.next()
             }
 
-//            applications.forEach { app ->
-//                Log.d(TAG, "*************************************")
-//                Log.d(TAG, app.toString())
- //           }
 
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
